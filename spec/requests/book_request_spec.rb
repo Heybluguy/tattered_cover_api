@@ -11,6 +11,9 @@ RSpec.describe "Book API" do
 
     expect(response.status).to eq(200)
     expect(content["count"]).to eq(Book.count)
+    expect(content["books"].count).to eq(Book.count)
+    expect(content["books"].first["title"]).to eq("Harry Potter")
+    expect(content["books"].first["author"]).to eq("J.K. Rowling")
   end
 
 end
