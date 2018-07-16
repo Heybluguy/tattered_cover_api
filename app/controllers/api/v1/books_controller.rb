@@ -7,4 +7,8 @@ class Api::V1::BooksController < ApplicationController
       message: "All of the books!"
     }
   end
+
+  def show
+    render status: 200, json: Book.find(params[:id])
+  end
 end
