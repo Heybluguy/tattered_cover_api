@@ -11,4 +11,22 @@ class Api::V1::BooksController < ApplicationController
   def show
     render status: 200, json: Book.find(params[:id])
   end
+
+  def create
+    book = Book.new(book_params)
+    if book.save
+      render status: 201, json: {
+        message: "Successfully created #{book.title} by #{book.author}."
+      }
+    else
+      render status: 400, json: {
+        message: "Create unsuccessful."
+      }
+    end
+  end
+
+    private
+      def book_params
+        params.require(:book).permit(:title, :author)
+      end
 end
